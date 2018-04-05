@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="particle-element">
+	
+	<template>
+		<style>
+			:host {
+				position: absolute;
+				font-size: 18px;
+				font-weight: bold;
+				z-index: 20;
+			}
+			
+		</style>
+		<span>+</span>
+	</template>
+	
+	<script>
+		class ParticleElement extends Polymer.Element {
+			
+			static get is() {
+				return "particle-element";
+			}
+			
+			constructor(left, top) {
+				super();
+				this.style.opacity = 1;
+				this.style.color = 'red';
+				this.decayRate = 0.005; // 0.0001 + (Math.random() * 0.005);
+				this.vX = (Math.random() - 0.5)/2;
+				this.vY = (Math.random() - 0.5)/2;
+				this.top = top;
+				this.left = left;
+				this.style.top = this.top + 'px';
+				this.style.left = this.left + 'px';
+				setInterval(this.tick.bind(this), 10);
+			}
+			
+			tick() {
+				if (this.style.opacity == 0) { return; }
+				this.style.opacity -= this.decayRate;
+				this.top += this.vY;
+				this.left += this.vX;
+				this.style.top = this.top + 'px';
+				this.style.left = this.left + 'px';
+			}
+		}
+		window.customElements.define(ParticleElement.is, ParticleElement);
+	</script>
+
+</dom-module>

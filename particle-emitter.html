@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="particle-element.html">
+
+<dom-module id="particle-emitter">
+	
+	<template>
+	</template>
+	
+	<script>
+		class ParticleEmitter extends Polymer.Element {
+			
+			static get is() {
+				return "particle-emitter";
+			}
+			
+			static get properties() {
+				return {
+					count: {type: Number, value: 100},
+					top: Number,
+					left: Number
+				}
+			}
+			
+			constructor() {
+				super();
+				setInterval(this.tick.bind(this), 10);
+				this.sparks = [];
+			}
+			
+			tick() {
+				const newSparks = [];
+				this.sparks.forEach(spark => {
+					if (spark.style.opacity > 0) { newSparks.push(spark); }
+				});
+				this.sparks = newSparks;
+				if (this.sparks.length > this.count) { return; }
+				this.left += (Math.random() * 0.3) - 0.15;
+				this.top += (Math.random() * 0.3) - 0.15;
+				if (Math.random() > 0.5) { this.addSpark(); }
+			}
+			
+			addSpark() {
+				const s = new ParticleElement(this.left, this.top);
+				this.shadowRoot.appendChild(s);
+				this.sparks.push(s);
+			}
+		}
+		window.customElements.define(ParticleEmitter.is, ParticleEmitter);
+	</script>
+
+</dom-module>

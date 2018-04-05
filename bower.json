@@ -1,0 +1,20 @@
+{
+	"name": "particle-emitter",
+	"version": "0.0.1",
+	"description": "A simple particle emitter for Polymer",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ThatDevCompany/polymer-particle-emitter.git"
+	},
+	"license": "MIT",
+	"main": "particle-emitter.html",
+	"dependencies": {
+		"polymer": "Polymer/polymer#*"
+	},
+	"devDependencies": {
+		"iron-component-page": "PolymerElements/iron-component-page#*",
+		"iron-demo-helpers": "PolymerElements/iron-demo-helpers#*",
+		"web-component-tester": "*",
+		"webcomponentsjs": "webcomponents/webcomponentsjs#*"
+	}
+}
